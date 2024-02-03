@@ -1,0 +1,18 @@
+class Solution
+{
+    static int MOD = 1000000007;
+   long DecimalValue(Node head)
+   {
+ 	if (head == null) return 0;
+
+        long decimalValue = 0;
+        Node current = head;
+
+        while (current != null) {
+            decimalValue = (decimalValue * 2 + current.data) % MOD;
+            current = current.next;
+        }
+
+        return decimalValue;
+   }
+}
