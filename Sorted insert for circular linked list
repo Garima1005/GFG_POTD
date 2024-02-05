@@ -1,0 +1,33 @@
+class Solution {
+    public Node sortedInsert(Node head, int data) {
+        Node newNode = new Node(data);
+
+        // List is empty
+        if (head == null) {
+            newNode.next = newNode;
+            head = newNode;
+        }
+        // if data is less than or equal to head data
+        else if (data <= head.data) {
+            Node temp = head;
+            while (temp.next != head) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+            newNode.next = head;
+            head = newNode;
+        }
+        // find the position of data
+        else {
+            Node current = head;
+            while (current.next != head && current.next.data < data) {
+                current = current.next;
+            }
+
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+
+        return head;
+    }
+}
