@@ -1,0 +1,39 @@
+class Solution {
+    static int mod = 1003;
+
+    static class Pair {
+        int f, s;
+
+        Pair(int f, int s) {
+            this.f = f;
+            this.s = s;
+        }
+    }
+
+    static Pair solve(int l, int r, String s, Pair dp[][]) {
+        if (l == r) return s.charAt(l) == 'T' ? new Pair(1, 0) : new Pair(0, 1);
+        if (dp[l][r] != null) return dp[l][r];
+        int first = 0, second = 0;
+        for (int i = l + 1; i < r; i++) {
+            if (s.charAt(i) == 'T' || s.charAt(i) == 'F') continue;
+            Pair left = solve(l, i - 1, s, dp);
+            Pair right = solve(i + 1, r, s, dp);
+            if (s.charAt(i) == '|') {
+                first = (first + (left.f * right.f) + (left.f * right.s) + (left.s * right.f)) % mod;
+                second = (second + (left.s * right.s)) % mod;
+            } else if (s.charAt(i) == '&') {
+                first = (first + (left.f * right.f)) % mod;
+                second = (second + (left.s * right.s) + (left.f * right.s) + (left.s * right.f)) % mod;
+            } else if (s.charAt(i) == '^') {
+                first = (first + (left.f * right.s) + (left.s * right.f)) % mod;
+                second = (second + (left.s * right.s) + (left.f * right.f)) % mod;
+            }
+        }
+        return dp[l][r] = new Pair(first, second);
+    }
+
+    static int countWays(int n, String s) {
+        Pair dp[][] = new Pair[n][n];
+        return solve(0, n - 1, s, dp).f;
+    }
+}
