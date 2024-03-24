@@ -1,0 +1,15 @@
+class Solution {
+    public Stack<Integer> insertAtBottom(Stack<Integer> st, int x) {
+        if(st.empty()){
+            st.push(x);
+        }else{
+            int temp=st.peek();
+            st.pop();
+            
+            insertAtBottom(st,x);
+            
+            st.push(temp);
+        }
+        return st;
+    }
+}
