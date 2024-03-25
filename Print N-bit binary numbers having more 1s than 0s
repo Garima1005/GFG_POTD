@@ -1,0 +1,26 @@
+class Solution {
+    ArrayList<String> NBitBinary(int n) {
+        // code here
+        int count1=0;
+        int count0=0;
+        ArrayList<String> al=new ArrayList<>();
+        StringBuilder curr=new StringBuilder();
+        
+        fun(n, count1, count0, curr, al);
+        
+        return al;
+    }
+    
+    void fun(int n, int count1, int count0, StringBuilder curr, List<String> al){
+        if(n==0){
+            al.add(curr.toString());
+            return;
+        }
+        
+        fun(n-1, count1+1,count0, new StringBuilder(curr).append("1"),al);
+        
+        if(count1>count0){
+            fun(n-1, count1, count0+1, new StringBuilder(curr).append("0"),al);
+        }
+    }
+}
