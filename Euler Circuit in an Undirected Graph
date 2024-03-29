@@ -1,0 +1,38 @@
+class Solution {
+    int vis[];
+    public boolean isEularCircuitExist(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        vis=new int[V+1];
+        
+        dfs(0, vis, adj);
+        
+        for(int i=0; i<V; i++){
+            if(vis[i]==0 && adj.get(i).size()>0){
+                return false;
+            }
+        }
+        
+        int count=0;
+        for(int i=0;i<V;i++){
+            if((adj.get(i).size()%2) == 1){
+                count++;
+            }
+        }
+        
+        if(count>2){
+            return false;
+        }
+        else if(count==2) return false;
+        
+        else return true;
+    }
+    
+    void dfs(int u, int[] vis, ArrayList<ArrayList<Integer>> adj){
+        vis[u]=1;
+        for(int v: adj.get(u)){
+            if(vis[v]==0){
+                dfs(v,vis,adj);
+            }
+        }
+    }
+}
