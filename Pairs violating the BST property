@@ -1,0 +1,28 @@
+class Solution {
+    static int k;
+    public static int pairsViolatingBST(int n, Node root) {
+        // code here
+        k=0;
+        int[] arr=new int[n];
+        inOrder(root,arr);
+        int count=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[i]>arr[j]){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    
+    public static void inOrder(Node root, int[] arr){
+        if(root==null){
+            return;
+        }
+        
+        inOrder(root.left,arr);
+        arr[k++]=root.data;
+        inOrder(root.right, arr);
+    }
+}
