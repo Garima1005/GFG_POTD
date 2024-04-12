@@ -1,0 +1,20 @@
+class Solution {
+    static long pairAndSum(int n, long arr[]) {
+        // code here
+        long result=0;
+        
+        for(int bit=0;bit<32;bit++){
+            int countOnes=0;
+            for(int i=0;i<n;i++){
+                if((arr[i]&(1L<<bit))!=0){
+                    countOnes++;
+                }
+            }
+            
+            long sumBit=(1L<<bit)*countOnes*(countOnes-1)/2;
+            result+=sumBit;
+        }
+        
+        return result;
+    }
+}
