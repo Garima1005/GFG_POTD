@@ -1,0 +1,14 @@
+
+class Solution {
+    static Long reversedBits(Long x) {
+        // code here
+        long result=0;
+        for(int i=0;i<32;i++){
+            int lsb=(int)(x &1);
+            
+            result=(result <<1)| lsb;
+            x=x>>1;
+        }
+        return Math.abs(result);
+    }
+};
