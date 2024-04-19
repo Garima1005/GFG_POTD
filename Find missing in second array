@@ -1,0 +1,19 @@
+class Solution
+{
+    ArrayList<Integer> findMissing(int a[], int b[], int n, int m)
+    {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        ArrayList<Integer> res=new ArrayList<>();
+        
+        for(int num:b){
+            map.put(num,map.getOrDefault(num,0)+1);
+        }
+        
+        for(int num2:a){
+            if(!map.containsKey(num2)){
+                res.add(num2);
+            }
+        }
+        return res;
+    }
+}
