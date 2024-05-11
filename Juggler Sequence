@@ -1,0 +1,19 @@
+class Solution {
+    static List<Long> jugglerSequence(long n) {
+        // code here
+        List<Long> al=new ArrayList<>();
+        long num=n;
+        al.add(n);
+        while(n>1){
+            if(n%2==0){
+                n=(long)(Math.sqrt(n));
+            }
+            else{
+                n=(long)(Math.sqrt(n)*n);
+            }
+            al.add(n);
+        }
+        
+        return al;
+    }
+}
