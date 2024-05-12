@@ -1,0 +1,13 @@
+class Solution {
+    static int minSteps(int d) {
+        // code here
+        d=Math.abs(d);
+        int step=0;
+        int sum=0;
+        while(sum<d ||(sum-d)%2!=0){
+            step++;
+            sum+=step;
+        }
+        return step;
+    }
+}
